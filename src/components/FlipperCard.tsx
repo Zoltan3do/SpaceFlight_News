@@ -25,6 +25,8 @@ function FlipperCard({
   useEffect(() => {
     const flipCard = document.getElementById("flip-card");
     let scrollInterval: NodeJS.Timeout;
+    let scrollToTopInterval: NodeJS.Timeout;
+    let scrollDelayTimeout: NodeJS.Timeout;
 
     if (flipCard) {
       const handleClick = () => {
@@ -33,28 +35,47 @@ function FlipperCard({
         const isFlipped = flipCard.classList.contains("flipped");
 
         if (isFlipped && backCardRef.current) {
-          scrollInterval = setInterval(() => {
-            if (backCardRef.current) {
-              backCardRef.current.scrollTop += 1;
-              if (
-                backCardRef.current.scrollTop >=
-                backCardRef.current.scrollHeight -
-                  backCardRef.current.clientHeight
-              ) {
-                clearInterval(scrollInterval);
+          scrollDelayTimeout = setTimeout(() => {
+            scrollInterval = setInterval(() => {
+              if (backCardRef.current) {
+                backCardRef.current.scrollTop += 1;
+                if (
+                  backCardRef.current.scrollTop >=
+                  backCardRef.current.scrollHeight -
+                    backCardRef.current.clientHeight
+                ) {
+                  clearInterval(scrollInterval);
+                }
               }
-            }
-          }, 50);
+            }, 20);
+          }, 1000);
         } else {
           clearInterval(scrollInterval);
+          clearTimeout(scrollDelayTimeout);
+        }
+      };
+
+      const handleMouseLeave = () => {
+        if (backCardRef.current) {
+          scrollToTopInterval = setInterval(() => {
+            if (backCardRef.current!.scrollTop > 0) {
+              backCardRef.current!.scrollTop -= 1;
+            } else {
+              clearInterval(scrollToTopInterval);
+            }
+          }, 50);
         }
       };
 
       flipCard.addEventListener("mouseenter", handleClick);
+      flipCard.addEventListener("mouseleave", handleMouseLeave);
 
       return () => {
-        flipCard.removeEventListener("mouseleave", handleClick);
+        flipCard.removeEventListener("mouseenter", handleClick);
+        flipCard.removeEventListener("mouseleave", handleMouseLeave);
         clearInterval(scrollInterval);
+        clearInterval(scrollToTopInterval);
+        clearTimeout(scrollDelayTimeout); 
       };
     }
   }, []);
@@ -89,7 +110,7 @@ function FlipperCard({
           <p className="published-date">{formattedDate}</p>
         </div>
         <div className="card-back">
-          <a href={url} target="_blank" rel="noopener noreferrer">
+          <a href={url} target="_blank" rel="noopener noreferrer" className="mb-2">
             {news_site}
           </a>
           <p ref={backCardRef}>{summary}</p>
