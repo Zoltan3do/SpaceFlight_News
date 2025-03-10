@@ -34,7 +34,7 @@
   color: white;
   border-radius: 25px;
   flex-direction: column;
-  padding: 20px;
+  padding: 10px;
 }
 
 .card-front {
@@ -47,7 +47,7 @@
   transform: rotateY(180deg);
   display: flex;
   flex-direction: column;
-  padding: 20px;
+  padding: 10px;
   pointer-events: auto;
 }
 
@@ -94,10 +94,11 @@ a:hover {
   text-align: justify;
   scrollbar-width: thin;
   scrollbar-color: rgba(255, 255, 255, 0.5) transparent;
+  scrollbar-width: none;
 }
 
 .card-back p::-webkit-scrollbar {
-  width: 1px;
+  display: none !important;
 }
 
 .card-back p::-webkit-scrollbar-thumb {

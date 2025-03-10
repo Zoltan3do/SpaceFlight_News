@@ -1,5 +1,4 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import "./FlipperCard.css";
 
 interface IFCard {
@@ -21,16 +20,41 @@ function FlipperCard({
   summary,
   published_at,
 }: IFCard) {
+  const backCardRef = useRef<HTMLParagraphElement | null>(null);
+
   useEffect(() => {
     const flipCard = document.getElementById("flip-card");
+    let scrollInterval: NodeJS.Timeout;
+
     if (flipCard) {
       const handleClick = () => {
         flipCard.classList.toggle("flipped");
+
+        const isFlipped = flipCard.classList.contains("flipped");
+
+        if (isFlipped && backCardRef.current) {
+          scrollInterval = setInterval(() => {
+            if (backCardRef.current) {
+              backCardRef.current.scrollTop += 1;
+              if (
+                backCardRef.current.scrollTop >=
+                backCardRef.current.scrollHeight -
+                  backCardRef.current.clientHeight
+              ) {
+                clearInterval(scrollInterval);
+              }
+            }
+          }, 50);
+        } else {
+          clearInterval(scrollInterval);
+        }
       };
-      flipCard.addEventListener("click", handleClick);
+
+      flipCard.addEventListener("mouseenter", handleClick);
 
       return () => {
-        flipCard.removeEventListener("click", handleClick);
+        flipCard.removeEventListener("mouseleave", handleClick);
+        clearInterval(scrollInterval);
       };
     }
   }, []);
@@ -44,36 +68,34 @@ function FlipperCard({
     : "Data non disponibile";
 
   return (
-    <>
-      <div className="card" id="flip-card">
-        <div className="card-inner" id="flip-card-inner">
-          <div
-            className="card-front"
-            style={{
-              backgroundImage: `url(${image_url})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              backgroundRepeat: "no-repeat",
-            }}
-          >
-            <div className="overlay"></div>
-            <h1 className="mb-2">
-              <a href={url} target="_blank" rel="noopener noreferrer">
-                {authors[0]}
-              </a>
-            </h1>
-            <p>{title}</p>
-            <p className="published-date">{formattedDate}</p>
-          </div>
-          <div className="card-back border border-1 border-light">
-            <a href={url} target="_blank" className="mb-3">
-              {news_site}
+    <div className="card" id="flip-card">
+      <div className="card-inner">
+        <div
+          className="card-front"
+          style={{
+            backgroundImage: `url(${image_url})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+          }}
+        >
+          <div className="overlay"></div>
+          <h1>
+            <a href={url} target="_blank" rel="noopener noreferrer">
+              {authors[0]}
             </a>
-            <p className="fs-6">{summary}</p>
-          </div>
+          </h1>
+          <p>{title}</p>
+          <p className="published-date">{formattedDate}</p>
+        </div>
+        <div className="card-back">
+          <a href={url} target="_blank" rel="noopener noreferrer">
+            {news_site}
+          </a>
+          <p ref={backCardRef}>{summary}</p>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
