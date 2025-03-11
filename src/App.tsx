@@ -3,6 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { CustomNav } from "./components/CustomNav";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import CustomHome from "./components/CustomHome";
+import ContactPage from "./components/ContactPage";
 function App() {
   return (
     <>
@@ -11,7 +12,8 @@ function App() {
           <div className="rounded rounded-5 border border-2 father-color px-5 py-4">
             <CustomNav></CustomNav>
             <Routes>
-              <Route path="/" element={<CustomHome></CustomHome>} />
+              <Route path="/" element={<CustomHome />} />
+              <Route path="/contact" element={<ContactPage />} />
             </Routes>
           </div>
         </div>
