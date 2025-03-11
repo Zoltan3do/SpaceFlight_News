@@ -3,7 +3,7 @@ import "./FlipperCard.css";
 
 interface IFCard {
   title: string;
-  authors: string[];
+  author: string;
   url: string;
   image_url: string;
   news_site: string;
@@ -13,7 +13,7 @@ interface IFCard {
 
 function FlipperCard({
   title,
-  authors,
+  author,
   url,
   image_url,
   news_site,
@@ -67,12 +67,12 @@ function FlipperCard({
         }
       };
 
-      flipCard.addEventListener("mouseenter", handleClick);
-      flipCard.addEventListener("mouseleave", handleMouseLeave);
+      flipCard.addEventListener("click", handleClick);
+      flipCard.addEventListener("click", handleMouseLeave);
 
       return () => {
-        flipCard.removeEventListener("mouseenter", handleClick);
-        flipCard.removeEventListener("mouseleave", handleMouseLeave);
+        flipCard.removeEventListener("click", handleClick);
+        flipCard.removeEventListener("click", handleMouseLeave);
         clearInterval(scrollInterval);
         clearInterval(scrollToTopInterval);
         clearTimeout(scrollDelayTimeout); 
@@ -89,7 +89,7 @@ function FlipperCard({
     : "Data non disponibile";
 
   return (
-    <div className="card" id="flip-card">
+    <div className="card " id="flip-card">
       <div className="card-inner">
         <div
           className="card-front"
@@ -101,9 +101,9 @@ function FlipperCard({
           }}
         >
           <div className="overlay"></div>
-          <h1>
+          <h1 className="mb-2">
             <a href={url} target="_blank" rel="noopener noreferrer">
-              {authors[0]}
+              {author}
             </a>
           </h1>
           <p>{title}</p>
