@@ -21,63 +21,56 @@ function FlipperCard({
   published_at,
 }: IFCard) {
   const backCardRef = useRef<HTMLParagraphElement | null>(null);
+  const scrollIntervalRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     const flipCard = document.getElementById("flip-card");
-    let scrollInterval: NodeJS.Timeout;
-    let scrollToTopInterval: NodeJS.Timeout;
-    let scrollDelayTimeout: NodeJS.Timeout;
 
-    if (flipCard) {
-      const handleClick = () => {
-        flipCard.classList.toggle("flipped");
+    if (!flipCard) return;
 
-        const isFlipped = flipCard.classList.contains("flipped");
+    const handleClick = () => {
+      flipCard.classList.toggle("flipped");
 
-        if (isFlipped && backCardRef.current) {
-          scrollDelayTimeout = setTimeout(() => {
-            scrollInterval = setInterval(() => {
-              if (backCardRef.current) {
-                backCardRef.current.scrollTop += 1;
-                if (
-                  backCardRef.current.scrollTop >=
-                  backCardRef.current.scrollHeight -
-                    backCardRef.current.clientHeight
-                ) {
-                  clearInterval(scrollInterval);
-                }
+      if (flipCard.classList.contains("flipped") && backCardRef.current) {
+        setTimeout(() => {
+          scrollIntervalRef.current = setInterval(() => {
+            if (backCardRef.current) {
+              backCardRef.current.scrollTop += 2;
+              if (
+                backCardRef.current.scrollTop >=
+                backCardRef.current.scrollHeight -
+                  backCardRef.current.clientHeight
+              ) {
+                clearInterval(scrollIntervalRef.current!);
               }
-            }, 20);
-          }, 1000);
-        } else {
-          clearInterval(scrollInterval);
-          clearTimeout(scrollDelayTimeout);
-        }
-      };
-
-      const handleMouseLeave = () => {
-        if (backCardRef.current) {
-          scrollToTopInterval = setInterval(() => {
-            if (backCardRef.current!.scrollTop > 0) {
-              backCardRef.current!.scrollTop -= 1;
-            } else {
-              clearInterval(scrollToTopInterval);
             }
-          }, 50);
-        }
-      };
+          }, 20);
+        }, 500);
+      } else {
+        clearInterval(scrollIntervalRef.current!);
+      }
+    };
 
-      flipCard.addEventListener("click", handleClick);
-      flipCard.addEventListener("click", handleMouseLeave);
+    const handleMouseLeave = () => {
+      if (backCardRef.current) {
+        const scrollToTop = setInterval(() => {
+          if (backCardRef.current!.scrollTop > 0) {
+            backCardRef.current!.scrollTop -= 3;
+          } else {
+            clearInterval(scrollToTop);
+          }
+        }, 20);
+      }
+    };
 
-      return () => {
-        flipCard.removeEventListener("click", handleClick);
-        flipCard.removeEventListener("click", handleMouseLeave);
-        clearInterval(scrollInterval);
-        clearInterval(scrollToTopInterval);
-        clearTimeout(scrollDelayTimeout); 
-      };
-    }
+    flipCard.addEventListener("click", handleClick);
+    flipCard.addEventListener("mouseleave", handleMouseLeave);
+
+    return () => {
+      flipCard.removeEventListener("click", handleClick);
+      flipCard.removeEventListener("mouseleave", handleMouseLeave);
+      clearInterval(scrollIntervalRef.current!);
+    };
   }, []);
 
   const formattedDate: string = published_at
@@ -89,7 +82,7 @@ function FlipperCard({
     : "Data non disponibile";
 
   return (
-    <div className="card " id="flip-card">
+    <div className="card" id="flip-card">
       <div className="card-inner">
         <div
           className="card-front"
@@ -110,7 +103,12 @@ function FlipperCard({
           <p className="published-date">{formattedDate}</p>
         </div>
         <div className="card-back">
-          <a href={url} target="_blank" rel="noopener noreferrer" className="mb-2">
+          <a
+            href={url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mb-2"
+          >
             {news_site}
           </a>
           <p ref={backCardRef}>{summary}</p>

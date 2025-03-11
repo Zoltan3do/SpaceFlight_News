@@ -36,5 +36,14 @@ a:hover {
 
 #figlioletto {
   max-height: 100%;
-  max-width: 90%;
+  max-width: 100%;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+#figliolino {
+  flex-grow: 1;
+  overflow-y: auto;
+  scrollbar-width: none;
 }
