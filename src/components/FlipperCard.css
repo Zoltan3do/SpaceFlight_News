@@ -110,7 +110,7 @@ a:hover {
 }
 
 .card-back a {
-  text-decoration: underline;
+  text-decoration: none;
   cursor: pointer !important;
   font-style: italic;
 }
@@ -122,4 +122,9 @@ a:hover {
   font-size: 0.6em !important;
   color: rgba(255, 255, 255, 0.8);
   border-radius: 5px;
+}
+
+.middle {
+  position: relative;
+  top: -2px;
 }

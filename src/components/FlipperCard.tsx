@@ -105,8 +105,15 @@ function FlipperCard({
         </div>
         <div className="card-back">
           <Link to={`/article/${id}`}>
-            <a target="_blank" rel="noopener noreferrer" className="mb-2">
-              {news_site}
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mb-2 bg-danger px-2 py-1 rounded rounded-4 fs-6 text-center"
+            >
+              {news_site + " "}
+              <span className="material-symbols-outlined align-middle fs-6 middle">
+                arrow_outward
+              </span>
             </a>
           </Link>
           <p ref={backCardRef}>{summary}</p>

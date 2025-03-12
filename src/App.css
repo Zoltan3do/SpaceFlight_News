@@ -19,16 +19,19 @@
 }
 
 .liEl {
-  background-color: black;
+  background-color: black!important;
   cursor: pointer;
   border: 1px solid whitesmoke;
   border-color: #424242 !important;
   transition-duration: 0.3s;
+  color: whitesmoke !important;
 }
 
 .liEl:hover {
-  background-color: rgb(31, 28, 28);
+  background-color: whitesmoke !important;
   transition-duration: 0.3s;
+  color: black !important;
+
 }
 
 a:hover {
