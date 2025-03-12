@@ -1,10 +1,11 @@
 .gradient-generated {
-  background: linear-gradient(
+  /* background: linear-gradient(
     180deg,
     rgba(11, 9, 8, 1) 0%,
     rgba(30, 27, 80, 1) 35%,
     rgba(142, 144, 188, 1) 100%
-  );
+  ); */
+  background: url("./walp.jpg");
 }
 
 .father-color {
@@ -40,6 +41,8 @@ a:hover {
   overflow-y: auto;
   display: flex;
   flex-direction: column;
+  -webkit-box-shadow: 0px 12px 12px 7px rgba(0,0,0,0.6); 
+  box-shadow: 0px 12px 12px 7px rgba(0,0,0,0.6);
 }
 
 #figliolino {
