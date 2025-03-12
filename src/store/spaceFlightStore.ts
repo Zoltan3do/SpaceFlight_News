@@ -18,9 +18,11 @@ interface SpaceState {
   listNow: Article[];
   customListNow: Article[];
   articleNow: Article;
+  stateNow: string;
   search: (newList: Article[]) => void;
   setArticleNow: (newArticle: Article) => void;
   customSearch: (newList: Article[]) => void;
+  changeState: (newState: string) => void;
 }
 
 export const spaceFlightStore = create<SpaceState>((set) => ({
@@ -35,7 +37,9 @@ export const spaceFlightStore = create<SpaceState>((set) => ({
     published_at: "",
     image_url: "",
   },
+  stateNow: "home",
   search: (newList: Article[]) => set({ listNow: newList }),
   setArticleNow: (newArticle: Article) => set({ articleNow: newArticle }),
   customSearch: (newSearch: Article[]) => set({ customListNow: newSearch }),
+  changeState: (newState: string) => set({ stateNow: newState }),
 }));
