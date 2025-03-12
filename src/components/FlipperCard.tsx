@@ -22,55 +22,23 @@ function FlipperCard({
   published_at,
 }: IFCard) {
   const backCardRef = useRef<HTMLParagraphElement | null>(null);
-  const scrollIntervalRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     const flipCard = document.getElementById("flip-card");
 
     if (!flipCard) return;
 
-    const handleClick = () => {
+    const handleFlip = () => {
       flipCard.classList.toggle("flipped");
-
-      if (flipCard.classList.contains("flipped") && backCardRef.current) {
-        setTimeout(() => {
-          scrollIntervalRef.current = setInterval(() => {
-            if (backCardRef.current) {
-              backCardRef.current.scrollTop += 2;
-              if (
-                backCardRef.current.scrollTop >=
-                backCardRef.current.scrollHeight -
-                  backCardRef.current.clientHeight
-              ) {
-                clearInterval(scrollIntervalRef.current!);
-              }
-            }
-          }, 20);
-        }, 500);
-      } else {
-        clearInterval(scrollIntervalRef.current!);
+      if (!flipCard.classList.contains("flipped") && backCardRef.current) {
+        backCardRef.current.scrollTop = 0;
       }
     };
 
-    const handleMouseLeave = () => {
-      if (backCardRef.current) {
-        const scrollToTop = setInterval(() => {
-          if (backCardRef.current!.scrollTop > 0) {
-            backCardRef.current!.scrollTop -= 3;
-          } else {
-            clearInterval(scrollToTop);
-          }
-        }, 20);
-      }
-    };
-
-    flipCard.addEventListener("click", handleClick);
-    flipCard.addEventListener("mouseleave", handleMouseLeave);
+    flipCard.addEventListener("click", handleFlip);
 
     return () => {
-      flipCard.removeEventListener("click", handleClick);
-      flipCard.removeEventListener("mouseleave", handleMouseLeave);
-      clearInterval(scrollIntervalRef.current!);
+      flipCard.removeEventListener("click", handleFlip);
     };
   }, []);
 
@@ -103,12 +71,12 @@ function FlipperCard({
           <p>{title}</p>
           <p className="published-date">{formattedDate}</p>
         </div>
-        <div className="card-back">
+        <div className="card-back d-flex flex-column gap-2">
           <Link to={`/article/${id}`}>
             <a
               target="_blank"
               rel="noopener noreferrer"
-              className="mb-2 bg-danger px-2 py-1 rounded rounded-4 fs-6 text-center"
+              className="bg-danger px-2 py-1 rounded rounded-4 fs-6 text-center"
             >
               {news_site + " "}
               <span className="material-symbols-outlined align-middle fs-6 middle">

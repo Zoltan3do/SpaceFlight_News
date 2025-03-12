@@ -3,7 +3,7 @@ import FlipperCard from "./FlipperCard";
 import { Article, spaceFlightStore } from "../store/spaceFlightStore";
 
 function CustomHome() {
-  const { listNow, search } = spaceFlightStore();
+  const { listNow, search, setArticleNow } = spaceFlightStore();
 
   const handleGetHome = () => {
     fetch("https://api.spaceflightnewsapi.net/v4/articles")
@@ -25,6 +25,15 @@ function CustomHome() {
 
   useEffect(() => {
     handleGetHome();
+    setArticleNow({
+      id: 0,
+      title: "",
+      authors: [],
+      news_site: "",
+      summary: "",
+      published_at: "",
+      image_url: "",
+    });
   }, []);
 
   return (

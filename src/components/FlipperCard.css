@@ -97,15 +97,21 @@ a:hover {
   text-align: justify;
   scrollbar-width: thin;
   scrollbar-color: rgba(255, 255, 255, 0.5) transparent;
-  scrollbar-width: none;
 }
 
+/* Opzionale: se vuoi mostrare la scrollbar */
 .card-back p::-webkit-scrollbar {
-  display: none !important;
+  width: 4px;
+  display: block !important;
 }
 
 .card-back p::-webkit-scrollbar-thumb {
   background: rgba(255, 255, 255, 0.5);
+  border-radius: 10px;
+}
+
+.card-back p::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
   border-radius: 10px;
 }
 

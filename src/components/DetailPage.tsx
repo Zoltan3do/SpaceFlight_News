@@ -32,11 +32,11 @@ function DetailPage() {
       <div className="container mt-3">
         <div className="row">
           <div className="col col-12 col-sm-6 d-flex flex-column" id="detail-father">
-            <h1 className="text-light mb-4">{articleNow?.title}</h1>
-            <p className="text-light">{articleNow?.summary}</p>
+            <h1 className="text-light mb-4">{articleNow.title}</h1>
+            <p className="text-light">{articleNow.summary}</p>
 
             <a
-              href={articleNow?.url}
+              href={articleNow.url}
               className="rounded rounded-3 p-2 bg-danger w-25 text-center mt-5"
               target="_blank"
               id="scopri"
@@ -53,7 +53,7 @@ function DetailPage() {
             id="immagine-dettaglio"
           >
             <img
-              src={articleNow?.image_url}
+              src={articleNow.image_url}
               alt="immagine articolo"
               className="w-100 rounded rounded-4 object-fit-cover"
             />
