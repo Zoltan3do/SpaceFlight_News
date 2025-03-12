@@ -5,7 +5,7 @@
     rgba(30, 27, 80, 1) 35%,
     rgba(142, 144, 188, 1) 100%
   ); */
-  background: url("./walp.jpg");
+  background: url("/walp.jpg");
 }
 
 .father-color {
@@ -49,4 +49,8 @@ a:hover {
   flex-grow: 1;
   overflow-y: auto;
   scrollbar-width: none;
+}
+
+#immagine-dettaglio{
+
 }

@@ -34,6 +34,7 @@ function CustomHome() {
           {listNow.slice(0, 8).map((item, i) => (
             <div key={i} className="col-lg-3 col-md-4 col-sm-6 col-12 mb-4">
               <FlipperCard
+                id={item?.id}
                 image_url={item?.image_url}
                 author={item?.authors[0]?.name}
                 title={item?.title}

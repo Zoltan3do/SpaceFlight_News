@@ -4,16 +4,21 @@ import { CustomNav } from "./components/CustomNav";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import CustomHome from "./components/CustomHome";
 import ContactPage from "./components/ContactPage";
+import DetailPage from "./components/DetailPage";
 function App() {
   return (
     <>
       <BrowserRouter>
         <div className="gradient-generated vh-100 d-flex justify-content-center align-items-center">
-          <div className="rounded rounded-5 border border-2 father-color px-5 py-4" id="figlioletto">
+          <div
+            className="rounded rounded-5 border border-2 father-color px-5 py-4"
+            id="figlioletto"
+          >
             <CustomNav></CustomNav>
             <Routes>
               <Route path="/" element={<CustomHome />} />
               <Route path="/contact" element={<ContactPage />} />
+              <Route path="/article/:id" element={<DetailPage />} />
             </Routes>
           </div>
         </div>

@@ -1,10 +1,11 @@
 import { useEffect, useRef } from "react";
 import "./FlipperCard.css";
+import { Link } from "react-router-dom";
 
 interface IFCard {
+  id: number;
   title: string;
   author: string;
-  url: string;
   image_url: string;
   news_site: string;
   summary: string;
@@ -12,9 +13,9 @@ interface IFCard {
 }
 
 function FlipperCard({
+  id,
   title,
   author,
-  url,
   image_url,
   news_site,
   summary,
@@ -95,7 +96,7 @@ function FlipperCard({
         >
           <div className="overlay"></div>
           <h1 className="mb-2">
-            <a href={url} target="_blank" rel="noopener noreferrer">
+            <a target="_blank" rel="noopener noreferrer">
               {author}
             </a>
           </h1>
@@ -103,14 +104,11 @@ function FlipperCard({
           <p className="published-date">{formattedDate}</p>
         </div>
         <div className="card-back">
-          <a
-            href={url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mb-2"
-          >
-            {news_site}
-          </a>
+          <Link to={`/article/${id}`}>
+            <a target="_blank" rel="noopener noreferrer" className="mb-2">
+              {news_site}
+            </a>
+          </Link>
           <p ref={backCardRef}>{summary}</p>
         </div>
       </div>
