@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import FlipperCard from "./FlipperCard";
-import { spaceFlightStore } from "../store/spaceFlightStore";
+import { Article, spaceFlightStore } from "../store/spaceFlightStore";
 
 function CustomHome() {
   const { listNow, search } = spaceFlightStore();
@@ -15,7 +15,7 @@ function CustomHome() {
       })
       .then((data) => {
         console.log("Dati ricevuti:", data);
-        const result: object[] = data.results;
+        const result: Article[] = data.results;
         search(result);
       })
       .catch((error) => {
@@ -38,7 +38,6 @@ function CustomHome() {
                 image_url={item?.image_url}
                 author={item?.authors[0]?.name}
                 title={item?.title}
-                url={item?.url}
                 summary={item?.summary}
                 published_at={item?.published_at}
                 news_site={item?.news_site}

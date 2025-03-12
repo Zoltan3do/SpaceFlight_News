@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { spaceFlightStore } from "../store/spaceFlightStore";
+import { Article, spaceFlightStore } from "../store/spaceFlightStore";
 import { useEffect } from "react";
 
 function DetailPage() {
@@ -16,7 +16,7 @@ function DetailPage() {
     })
     .then((data) => {
       console.log("Dati ricevuti:", data);
-      const result: object = data;
+      const result: Article = data;
       setArticleNow(result);
     })
     .catch((error) => {
