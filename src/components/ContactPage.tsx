@@ -1,8 +1,15 @@
 import "./contactpage.css";
 import { useState, ChangeEvent } from "react";
 
+type FormType = {
+  txtName: string;
+  txtEmail: string;
+  txtPhone: string;
+  txtMsg: string;
+};
+
 function ContactPage() {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormType>({
     txtName: "",
     txtEmail: "",
     txtPhone: "",
@@ -19,10 +26,10 @@ function ContactPage() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    const subject = "Messaggio dal modulo di contatto";
+    const subject = "SpaceFlight News - Question message";
     const body = `Nome: ${formData.txtName}\nEmail: ${formData.txtEmail}\nTelefono: ${formData.txtPhone}\nMessaggio: ${formData.txtMsg}`;
 
-    window.location.href = `mailto:destinazione@email.com?subject=${encodeURIComponent(
+    window.location.href = `mailto:baronemanu109@gmail.com?subject=${encodeURIComponent(
       subject
     )}&body=${encodeURIComponent(body)}`;
   };
