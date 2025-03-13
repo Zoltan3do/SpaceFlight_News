@@ -1,9 +1,13 @@
 import { create } from "zustand";
 
+type Author = {
+  name: string;
+};
+
 export type Article = {
   id: number;
   title: string;
-  authors: object[];
+  authors: Author[];
   news_site: string;
   summary: string;
   published_at: string;
