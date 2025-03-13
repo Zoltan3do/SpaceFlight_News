@@ -1,3 +1,4 @@
+import { MouseEventHandler } from "react";
 import { create } from "zustand";
 
 export type Article = {
@@ -22,7 +23,7 @@ interface SpaceState {
   search: (newList: Article[]) => void;
   setArticleNow: (newArticle: Article) => void;
   customSearch: (newList: Article[]) => void;
-  changeState: (newState: string) => void;
+  changeState: (newState: string) => MouseEventHandler<HTMLLIElement>;
 }
 
 export const spaceFlightStore = create<SpaceState>((set) => ({
