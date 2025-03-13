@@ -46,7 +46,7 @@ function ContactPage() {
                   type="text"
                   name="txtName"
                   className="form-control"
-                  placeholder="Nome *"
+                  placeholder="Name *"
                   value={formData.txtName}
                   onChange={handleChange}
                 />
@@ -66,7 +66,7 @@ function ContactPage() {
                   type="text"
                   name="txtPhone"
                   className="form-control"
-                  placeholder="Telefono *"
+                  placeholder="Phone number *"
                   value={formData.txtPhone}
                   onChange={handleChange}
                 />
@@ -82,7 +82,7 @@ function ContactPage() {
                 <textarea
                   name="txtMsg"
                   className="form-control"
-                  placeholder="Tuo messaggio *"
+                  placeholder="Your message *"
                   style={{ width: "100%", height: "150px" }}
                   value={formData.txtMsg}
                   onChange={handleChange}
