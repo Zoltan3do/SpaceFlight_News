@@ -30,7 +30,7 @@
   pointer-events: auto;
 }
 
-.search__field:hover {
+.search__field:focus:hover {
   cursor: text;
 }
 
@@ -49,6 +49,11 @@
   transition: background-color 0.2s ease-in-out;
   color: whitesmoke;
 }
+
+.search_icon:hover {
+  cursor: pointer !important;
+}
+
 .search__field::-webkit-input-placeholder {
   position: relative;
   top: 0;
