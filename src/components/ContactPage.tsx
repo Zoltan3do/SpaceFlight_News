@@ -1,5 +1,6 @@
 import "./contactpage.css";
-import { useState, ChangeEvent } from "react";
+import { useState, ChangeEvent, useEffect } from "react";
+import { spaceFlightStore } from "../store/spaceFlightStore";
 
 type FormType = {
   txtName: string;
@@ -15,6 +16,9 @@ function ContactPage() {
     txtPhone: "",
     txtMsg: "",
   });
+
+  const { changeState } = spaceFlightStore();
+  const currentUrl: string = window.location.href;
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -33,6 +37,12 @@ function ContactPage() {
       subject
     )}&body=${encodeURIComponent(body)}`;
   };
+
+  useEffect(() => {
+    if (currentUrl === "http://localhost:5173/contact") {
+      changeState("contact");
+    }
+  }, []);
 
   return (
     <>

@@ -41,7 +41,7 @@ export const spaceFlightStore = create<SpaceState>((set) => ({
     published_at: "",
     image_url: "",
   },
-  stateNow: "home",
+  stateNow: "",
   search: (newList: Article[]) => set({ listNow: newList }),
   setArticleNow: (newArticle: Article) => set({ articleNow: newArticle }),
   customSearch: (newSearch: Article[]) => set({ customListNow: newSearch }),

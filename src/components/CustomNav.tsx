@@ -17,21 +17,23 @@ export const CustomNav = () => {
           <Link to="/">
             <li
               className={`rounded rounded-4 text-dark bg-light border  liEl py-1 px-3 ${
-                stateNow == "home" ? "focused-navlink" : ""
+                stateNow == "" ? "focused-navlink" : ""
               }`}
-              onClick={() => handleChangeState("home")}
+              onClick={() => handleChangeState("")}
             >
               HOME
             </li>
           </Link>
-          <li
-            className={`rounded rounded-4 text-dark bg-light border  liEl py-1 px-3 ${
-              stateNow == "search" ? "focused-navlink" : ""
-            }`}
-            onClick={() => handleChangeState("search")}
-          >
-            SEARCH
-          </li>
+          <Link to="/search">
+            <li
+              className={`rounded rounded-4 text-dark bg-light border  liEl py-1 px-3 ${
+                stateNow == "search" ? "focused-navlink" : ""
+              }`}
+              onClick={() => handleChangeState("search")}
+            >
+              SEARCH
+            </li>
+          </Link>
           <Link to="./contact">
             <li
               className={`rounded rounded-4 text-dark bg-light border  liEl py-1 px-3 ${

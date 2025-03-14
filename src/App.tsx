@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import CustomHome from "./components/CustomHome";
 import ContactPage from "./components/ContactPage";
 import DetailPage from "./components/DetailPage";
+import CustomSearch from "./components/CustomSearch";
 function App() {
   return (
     <>
@@ -19,6 +20,7 @@ function App() {
               <Route path="/" element={<CustomHome />} />
               <Route path="/contact" element={<ContactPage />} />
               <Route path="/article/:id" element={<DetailPage />} />
+              <Route path="/search" element={<CustomSearch />} />
             </Routes>
           </div>
         </div>
