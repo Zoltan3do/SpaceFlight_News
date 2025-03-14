@@ -7,9 +7,18 @@ function CustomSearch() {
   const { changeState, customSearch, customListNow } = spaceFlightStore();
   const currentUrl: string = window.location.href;
   const [inSearch, setInSearch] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
+  const itemsPerPage = 8;
 
-  const handleSearchFetch = () => {
-    fetch(`https://api.spaceflightnewsapi.net/v4/articles/?search=${inSearch}`)
+  const handleSearchFetch = (page = 1) => {
+    setIsLoading(true);
+    fetch(
+      `https://api.spaceflightnewsapi.net/v4/articles/?search=${inSearch}&limit=${itemsPerPage}&offset=${
+        (page - 1) * itemsPerPage
+      }`
+    )
       .then((response) => {
         if (!response.ok) {
           throw new Error(`Errore HTTP! Status: ${response.status}`);
@@ -20,9 +29,13 @@ function CustomSearch() {
         console.log("Dati ricevuti:", data);
         const result: Article[] = data.results;
         customSearch(result);
+
+        setTotalPages(Math.ceil(data.count / itemsPerPage));
+        setIsLoading(false);
       })
       .catch((error) => {
         console.error("Errore nella richiesta:", error);
+        setIsLoading(false);
       });
   };
 
@@ -30,14 +43,87 @@ function CustomSearch() {
     if (currentUrl === "http://localhost:5173/search") {
       changeState("search");
     }
+
+    setCurrentPage(1);
     handleSearchFetch();
   }, [inSearch]);
 
+  useEffect(() => {
+    if (inSearch) {
+      handleSearchFetch(currentPage);
+    }
+  }, [currentPage]);
+
+  const handlePageChange = (page: number) => {
+    if (page >= 1 && page <= totalPages) {
+      setCurrentPage(page);
+    }
+  };
+
+  const renderPagination = () => {
+    const pages = [];
+    const maxPageButtons = 5;
+
+    let startPage = Math.max(1, currentPage - Math.floor(maxPageButtons / 2));
+    let endPage = Math.min(totalPages, startPage + maxPageButtons - 1);
+
+    if (endPage - startPage + 1 < maxPageButtons) {
+      startPage = Math.max(1, endPage - maxPageButtons + 1);
+    }
+
+    pages.push(
+      <li
+        key="prev"
+        className={`page-item ${currentPage === 1 ? "disabled" : ""}`}
+      >
+        <button
+          className="page-link text-dark border-dark"
+          onClick={() => handlePageChange(currentPage - 1)}
+        >
+          &laquo;
+        </button>
+      </li>
+    );
+
+    for (let i = startPage; i <= endPage; i++) {
+      pages.push(
+        <li
+          key={i}
+          className={`page-item ${currentPage === i ? "active" : ""}`}
+        >
+          <button className="page-link text-light border-dark bg-transparent" onClick={() => handlePageChange(i)}>
+            {i}
+          </button>
+        </li>
+      );
+    }
+
+    pages.push(
+      <li
+        key="next"
+        className={`page-item ${currentPage === totalPages ? "disabled" : ""}`}
+      >
+        <button
+          className="page-link text-dark border-dark"
+          onClick={() => handlePageChange(currentPage + 1)}
+        >
+          &raquo;
+        </button>
+      </li>
+    );
+
+    return (
+      <nav aria-label="Search results pagination">
+        <ul className="pagination justify-content-center">{pages}</ul>
+      </nav>
+    );
+  };
+
   return (
     <>
-      <div className="">
+      <div>
         <div className="d-flex justify-content-center mb-2">
-          <form className="search">
+          <form className="search" onSubmit={(e) => e.preventDefault()}>
             <div className="search__wrapper">
               <input
                 type="text"
@@ -53,12 +139,17 @@ function CustomSearch() {
             </div>
           </form>
         </div>
-
-        <div className="d-flex justify-content-center">
-          <div className="container" id="figliolino">
-            {customListNow.length > 0 ? (
+        <div className="container" id="figliolino">
+          {isLoading ? (
+            <div className="d-flex justify-content-center align-items-center">
+              <div className="spinner-border" role="status">
+                <span className="sr-only">Loading...</span>
+              </div>
+            </div>
+          ) : customListNow.length > 0 ? (
+            <>
               <div className="row">
-                {customListNow.slice(0, 8).map((item, i) => (
+                {customListNow.map((item, i) => (
                   <div
                     key={i}
                     className="col-lg-3 col-md-4 col-sm-6 col-12 mb-4"
@@ -75,17 +166,17 @@ function CustomSearch() {
                   </div>
                 ))}
               </div>
-            ) : (
-              <div className="d-flex justify-content-center align-items-center">
-                <div className="spinner-border" role="status">
-                  <span className="sr-only">Loading...</span>
-                </div>
-              </div>
-            )}
-          </div>
+              {totalPages > 1 && renderPagination()}
+            </>
+          ) : (
+            <div className="text-center mt-4">
+              <p>No results found. Try a different search term.</p>
+            </div>
+          )}
         </div>
       </div>
     </>
   );
 }
+
 export default CustomSearch;
