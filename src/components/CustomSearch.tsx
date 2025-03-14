@@ -169,7 +169,7 @@ function CustomSearch() {
               {totalPages > 1 && renderPagination()}
             </>
           ) : (
-            <div className="text-center mt-4">
+            <div className="text-center mt-4 text-light">
               <p>No results found. Try a different search term.</p>
             </div>
           )}

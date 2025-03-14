@@ -4,6 +4,8 @@ type Author = {
   name: string;
 };
 
+
+
 export type Article = {
   id: number;
   title: string;
@@ -18,6 +20,7 @@ export type Article = {
   launches?: [];
   events?: [];
 };
+
 interface SpaceState {
   listNow: Article[];
   customListNow: Article[];
