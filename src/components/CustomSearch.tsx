@@ -91,7 +91,14 @@ function CustomSearch() {
           key={i}
           className={`page-item ${currentPage === i ? "active" : ""}`}
         >
-          <button className="page-link text-light border-dark bg-transparent" onClick={() => handlePageChange(i)}>
+          <button
+            className={`page-link border-dark ${
+              currentPage === i
+                ? "bg-dark text-light"
+                : "text-light bg-transparent"
+            }`}
+            onClick={() => handlePageChange(i)}
+          >
             {i}
           </button>
         </li>
@@ -141,9 +148,182 @@ function CustomSearch() {
         </div>
         <div className="container" id="figliolino">
           {isLoading ? (
-            <div className="d-flex justify-content-center align-items-center">
-              <div className="spinner-border" role="status">
-                <span className="sr-only">Loading...</span>
+            <div className="row">
+              <div
+                className="card col-lg-3 col-md-4 col-sm-6 col-12 mb-4"
+                aria-hidden="true"
+              >
+                <img src="..." className="card-img-top" alt="..." />
+                <div className="card-body">
+                  <h5 className="card-title placeholder-glow">
+                    <span className="placeholder col-6"></span>
+                  </h5>
+                  <p className="card-text placeholder-glow">
+                    <span className="placeholder col-7"></span>
+                    <span className="placeholder col-4"></span>
+                    <span className="placeholder col-4"></span>
+                    <span className="placeholder col-6"></span>
+                    <span className="placeholder col-8"></span>
+                  </p>
+                  <a
+                    className="btn btn-dark disabled placeholder col-6"
+                    aria-disabled="true"
+                  ></a>
+                </div>
+              </div>
+              <div
+                className="card col-lg-3 col-md-4 col-sm-6 col-12 mb-4"
+                aria-hidden="true"
+              >
+                <img src="..." className="card-img-top" alt="..." />
+                <div className="card-body">
+                  <h5 className="card-title placeholder-glow">
+                    <span className="placeholder col-6"></span>
+                  </h5>
+                  <p className="card-text placeholder-glow">
+                    <span className="placeholder col-7"></span>
+                    <span className="placeholder col-4"></span>
+                    <span className="placeholder col-4"></span>
+                    <span className="placeholder col-6"></span>
+                    <span className="placeholder col-8"></span>
+                  </p>
+                  <a
+                    className="btn btn-dark disabled placeholder col-6"
+                    aria-disabled="true"
+                  ></a>
+                </div>
+              </div>
+              <div
+                className="card col-lg-3 col-md-4 col-sm-6 col-12 mb-4"
+                aria-hidden="true"
+              >
+                <img src="..." className="card-img-top" alt="..." />
+                <div className="card-body">
+                  <h5 className="card-title placeholder-glow">
+                    <span className="placeholder col-6"></span>
+                  </h5>
+                  <p className="card-text placeholder-glow">
+                    <span className="placeholder col-7"></span>
+                    <span className="placeholder col-4"></span>
+                    <span className="placeholder col-4"></span>
+                    <span className="placeholder col-6"></span>
+                    <span className="placeholder col-8"></span>
+                  </p>
+                  <a
+                    className="btn btn-dark disabled placeholder col-6"
+                    aria-disabled="true"
+                  ></a>
+                </div>
+              </div>
+              <div
+                className="card col-lg-3 col-md-4 col-sm-6 col-12 mb-4"
+                aria-hidden="true"
+              >
+                <img src="..." className="card-img-top" alt="..." />
+                <div className="card-body">
+                  <h5 className="card-title placeholder-glow">
+                    <span className="placeholder col-6"></span>
+                  </h5>
+                  <p className="card-text placeholder-glow">
+                    <span className="placeholder col-7"></span>
+                    <span className="placeholder col-4"></span>
+                    <span className="placeholder col-4"></span>
+                    <span className="placeholder col-6"></span>
+                    <span className="placeholder col-8"></span>
+                  </p>
+                  <a
+                    className="btn btn-dark disabled placeholder col-6"
+                    aria-disabled="true"
+                  ></a>
+                </div>
+              </div>
+              <div
+                className="card col-lg-3 col-md-4 col-sm-6 col-12 mb-4"
+                aria-hidden="true"
+              >
+                <img src="..." className="card-img-top" alt="..." />
+                <div className="card-body">
+                  <h5 className="card-title placeholder-glow">
+                    <span className="placeholder col-6"></span>
+                  </h5>
+                  <p className="card-text placeholder-glow">
+                    <span className="placeholder col-7"></span>
+                    <span className="placeholder col-4"></span>
+                    <span className="placeholder col-4"></span>
+                    <span className="placeholder col-6"></span>
+                    <span className="placeholder col-8"></span>
+                  </p>
+                  <a
+                    className="btn btn-dark disabled placeholder col-6"
+                    aria-disabled="true"
+                  ></a>
+                </div>
+              </div>
+              <div
+                className="card col-lg-3 col-md-4 col-sm-6 col-12 mb-4"
+                aria-hidden="true"
+              >
+                <img src="..." className="card-img-top" alt="..." />
+                <div className="card-body">
+                  <h5 className="card-title placeholder-glow">
+                    <span className="placeholder col-6"></span>
+                  </h5>
+                  <p className="card-text placeholder-glow">
+                    <span className="placeholder col-7"></span>
+                    <span className="placeholder col-4"></span>
+                    <span className="placeholder col-4"></span>
+                    <span className="placeholder col-6"></span>
+                    <span className="placeholder col-8"></span>
+                  </p>
+                  <a
+                    className="btn btn-dark disabled placeholder col-6"
+                    aria-disabled="true"
+                  ></a>
+                </div>
+              </div>
+              <div
+                className="card col-lg-3 col-md-4 col-sm-6 col-12 mb-4"
+                aria-hidden="true"
+              >
+                <img src="..." className="card-img-top" alt="..." />
+                <div className="card-body">
+                  <h5 className="card-title placeholder-glow">
+                    <span className="placeholder col-6"></span>
+                  </h5>
+                  <p className="card-text placeholder-glow">
+                    <span className="placeholder col-7"></span>
+                    <span className="placeholder col-4"></span>
+                    <span className="placeholder col-4"></span>
+                    <span className="placeholder col-6"></span>
+                    <span className="placeholder col-8"></span>
+                  </p>
+                  <a
+                    className="btn btn-dark disabled placeholder col-6"
+                    aria-disabled="true"
+                  ></a>
+                </div>
+              </div>
+              <div
+                className="card col-lg-3 col-md-4 col-sm-6 col-12 mb-4"
+                aria-hidden="true"
+              >
+                <img src="..." className="card-img-top" alt="..." />
+                <div className="card-body">
+                  <h5 className="card-title placeholder-glow">
+                    <span className="placeholder col-6"></span>
+                  </h5>
+                  <p className="card-text placeholder-glow">
+                    <span className="placeholder col-7"></span>
+                    <span className="placeholder col-4"></span>
+                    <span className="placeholder col-4"></span>
+                    <span className="placeholder col-6"></span>
+                    <span className="placeholder col-8"></span>
+                  </p>
+                  <a
+                    className="btn btn-dark disabled placeholder col-6"
+                    aria-disabled="true"
+                  ></a>
+                </div>
               </div>
             </div>
           ) : customListNow.length > 0 ? (
