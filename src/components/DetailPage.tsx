@@ -1,31 +1,43 @@
 import { useParams } from "react-router-dom";
 import { Article, spaceFlightStore } from "../store/spaceFlightStore";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 function DetailPage() {
   const { id } = useParams();
   const { articleNow, setArticleNow } = spaceFlightStore();
+  const [loading, setLoading] = useState(true);
 
-  const handleFetch = () => {};
-  fetch(`https://api.spaceflightnewsapi.net/v4/articles/${id}`)
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error(`Errore HTTP! Status: ${response.status}`);
-      }
-      return response.json();
-    })
-    .then((data) => {
-      console.log("Dati ricevuti:", data);
-      const result: Article = data;
-      setArticleNow(result);
-    })
-    .catch((error) => {
-      console.error("Errore nella richiesta:", error);
-    });
+  const handleFetch = () => {
+    fetch(`https://api.spaceflightnewsapi.net/v4/articles/${id}`)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`Errore HTTP! Status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log("Dati ricevuti:", data);
+        const result: Article = data;
+        setArticleNow(result);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Errore nella richiesta:", error);
+        setLoading(false);
+      });
+  };
 
   useEffect(() => {
     handleFetch();
   }, []);
+
+  if (loading || !articleNow.title || !articleNow.summary) {
+    return (
+      <div className="d-flex justify-content-center align-items-center my-3">
+        <div className="spinner-border text-light" role="status"></div>
+      </div>
+    );
+  }
 
   return (
     <>
@@ -34,13 +46,11 @@ function DetailPage() {
           <div className="col col-12 col-sm-6 d-flex flex-column" id="detail-father">
             <h1 className="text-light mb-4">{articleNow.title}</h1>
             <p className="text-light">{articleNow.summary}</p>
-
             <a
               href={articleNow.url}
               className="rounded rounded-3 p-2 bg-danger w-25 text-center mt-5"
               target="_blank"
               id="scopri"
-             
             >
               Scopri di più{" "}
               <span className="material-symbols-outlined align-middle">
@@ -63,4 +73,5 @@ function DetailPage() {
     </>
   );
 }
+
 export default DetailPage;

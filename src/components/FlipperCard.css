@@ -99,7 +99,6 @@ a:hover {
   scrollbar-color: rgba(255, 255, 255, 0.5) transparent;
 }
 
-/* Opzionale: se vuoi mostrare la scrollbar */
 .card-back p::-webkit-scrollbar {
   width: 4px;
   display: block !important;
