@@ -26,7 +26,7 @@ function CustomHome() {
 
   const handleFadeIn = (nClass: string, dur: number) => {
     gsap.from(nClass, {
-      opacity: 0.8,
+      opacity: 0.9,
       y: "-100vh",
       duration: dur,
       ease: "power1.out",
