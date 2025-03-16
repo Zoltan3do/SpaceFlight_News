@@ -5,7 +5,6 @@
   min-height: 300px;
   perspective: 1000px;
   border-radius: 25px;
-  overflow: hidden;
   margin: 0;
 }
 
@@ -97,6 +96,7 @@ a:hover {
   text-align: justify;
   scrollbar-width: thin;
   scrollbar-color: rgba(255, 255, 255, 0.5) transparent;
+  overflow: auto !important;
 }
 
 .card-back p::-webkit-scrollbar {

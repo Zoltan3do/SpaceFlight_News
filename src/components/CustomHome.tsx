@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import FlipperCard from "./FlipperCard";
 import { Article, spaceFlightStore } from "../store/spaceFlightStore";
+import gsap from "gsap";
 
 function CustomHome() {
   const { listNow, search, setArticleNow } = spaceFlightStore();
@@ -23,6 +24,28 @@ function CustomHome() {
       });
   };
 
+  const handleFadeIn = (nClass: string, dur: number) => {
+    gsap.from(nClass, {
+      opacity: 0.8,
+      y: "-100vh",
+      duration: dur,
+      ease: "power1.out",
+      stagger: 0.2,
+      onStart: () =>
+        (document.querySelector(nClass)!.style.pointerEvents = "none"),
+      onComplete: () =>
+        (document.querySelector(nClass)!.style.pointerEvents = "auto"),
+    });
+  };
+
+  const handleRain = () => {
+    let random: number;
+    for (let i = 0; i < 8; i++) {
+      random = Math.floor(Math.random() * 8 + 1);
+      handleFadeIn(`.n${i}`, random / 4);
+    }
+  };
+
   useEffect(() => {
     handleGetHome();
     setArticleNow({
@@ -34,14 +57,18 @@ function CustomHome() {
       published_at: "",
       image_url: "",
     });
+    handleRain();
   }, []);
 
   return (
-    <div className="container" id="figliolino">
+    <div className="container z-1" id="figliolino">
       {listNow.length > 0 ? (
-        <div className="row">
+        <div className="row" id="flipContainer">
           {listNow.slice(0, 8).map((item, i) => (
-            <div key={i} className="col-lg-3 col-md-4 col-sm-6 col-12 mb-4">
+            <div
+              key={i}
+              className={`col-lg-3 col-md-4 col-sm-6 col-12 mb-4 n${i}`}
+            >
               <FlipperCard
                 id={item?.id}
                 image_url={item?.image_url}

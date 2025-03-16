@@ -6,7 +6,7 @@
     rgba(142, 144, 188, 1) 100%
   ); */
   background: url("/walp.jpg");
-  
+  overflow: visible !important;
 }
 
 .father-color {
@@ -60,14 +60,20 @@ a:hover {
 }
 
 #figlioletto {
-  overflow: auto; 
+  overflow: auto;
 }
 
 #figlioletto::-webkit-scrollbar {
-  display: none; 
+  display: none;
 }
 
 #figlioletto {
-  -ms-overflow-style: none; 
-  scrollbar-width: none;  
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  overflow: auto !important;
 }
+
+* {
+  overflow: visible !important;
+}
+

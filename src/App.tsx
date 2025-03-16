@@ -12,7 +12,7 @@ function App() {
       <BrowserRouter>
         <div className="gradient-generated vh-100 d-flex justify-content-center align-items-center">
           <div
-            className="rounded rounded-5 border border-2 father-color px-5 py-4"
+            className="rounded rounded-5 border border-2 father-color px-5 py-4 z-1"
             id="figlioletto"
           >
             <CustomNav></CustomNav>
