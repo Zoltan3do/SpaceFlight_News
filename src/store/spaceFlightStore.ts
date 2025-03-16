@@ -4,8 +4,6 @@ type Author = {
   name: string;
 };
 
-
-
 export type Article = {
   id: number;
   title: string;

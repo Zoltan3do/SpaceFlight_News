@@ -8,6 +8,7 @@
   position: relative;
 }
 .search__field {
+  will-change: width;
   width: 50px;
   height: 50px;
   color: whitesmoke;
@@ -16,7 +17,7 @@
   border: 1px solid transparent;
   border-radius: 0;
   cursor: pointer;
-  transition: all 0.3s ease-in-out;
+  transition: width 0.3s ease-in-out, border-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 .search__field:focus {
   border-bottom-color: #ccc;
