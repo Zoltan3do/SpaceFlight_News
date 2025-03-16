@@ -8,6 +8,7 @@ import DetailPage from "./components/DetailPage";
 import CustomSearch from "./components/CustomSearch";
 import styled from "styled-components";
 import cursor from "../src/assets/rocket-cursor.svg";
+import NotFoundPage from "./components/NotFoundPage";
 
 const CustomCursorArea = styled.div`
   cursor: url(${cursor}) 16 16, auto !important;
@@ -31,6 +32,7 @@ function App() {
                 <Route path="/contact" element={<ContactPage />} />
                 <Route path="/article/:id" element={<DetailPage />} />
                 <Route path="/search" element={<CustomSearch />} />
+                <Route path="*" element={<NotFoundPage />} />
               </Routes>
             </div>
           </div>
