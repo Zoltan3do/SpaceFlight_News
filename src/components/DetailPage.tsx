@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { Article, spaceFlightStore } from "../store/spaceFlightStore";
 import { useEffect, useState } from "react";
+import gsap from "gsap";
 
 function DetailPage() {
   const { id } = useParams();
@@ -27,9 +28,24 @@ function DetailPage() {
       });
   };
 
+  const handleFadeIn = () => {
+    gsap.fromTo(
+      "#detail-father",
+      { opacity: 0, x: -150 },
+      { opacity: 1, x: 0, duration: 1.5 }
+    );
+
+    gsap.fromTo(
+      "#immagine-dettaglio",
+      { opacity: 0, x: 150 },
+      { opacity: 1, x: 0, duration: 1.5 }
+    );
+  };
+
   useEffect(() => {
     handleFetch();
-  }, []);
+    handleFadeIn();
+  }, [articleNow.title]);
 
   if (loading || !articleNow.title || !articleNow.summary) {
     return (
@@ -43,7 +59,10 @@ function DetailPage() {
     <>
       <div className="container mt-3">
         <div className="row">
-          <div className="col col-12 col-sm-6 d-flex flex-column" id="detail-father">
+          <div
+            className="col col-12 col-sm-6 d-flex flex-column"
+            id="detail-father"
+          >
             <h1 className="text-light mb-4">{articleNow.title}</h1>
             <p className="text-light">{articleNow.summary}</p>
             <a
