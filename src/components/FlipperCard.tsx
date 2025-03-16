@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import "./FlipperCard.css";
 import { Link } from "react-router-dom";
+import { Card } from "react-bootstrap";
 
 interface IFCard {
   id: number;
@@ -51,7 +52,7 @@ function FlipperCard({
     : "Data non disponibile";
 
   return (
-    <div className="card" id="flip-card">
+    <Card id="flip-card">
       <div className="card-inner">
         <div
           className="card-front"
@@ -87,7 +88,7 @@ function FlipperCard({
           <p ref={backCardRef}>{summary}</p>
         </div>
       </div>
-    </div>
+    </Card>
   );
 }
 

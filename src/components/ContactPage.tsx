@@ -1,6 +1,7 @@
 import "./contactpage.css";
 import { useState, ChangeEvent, useEffect } from "react";
 import { spaceFlightStore } from "../store/spaceFlightStore";
+import { Container, Form, Row, Col, Button } from "react-bootstrap";
 
 type FormType = {
   txtName: string;
@@ -46,62 +47,59 @@ function ContactPage() {
 
   return (
     <>
-      <div className="container contact-form">
-        <form onSubmit={handleSubmit}>
+      <Container className="contact-form">
+        <Form onSubmit={handleSubmit}>
           <h3>Inviaci un messaggio</h3>
-          <div className="row">
-            <div className="col-md-6">
-              <div className="form-group">
-                <input
+          <Row>
+            <Col md={6}>
+              <Form.Group className="form-group">
+                <Form.Control
                   type="text"
                   name="txtName"
-                  className="form-control"
                   placeholder="Name *"
                   value={formData.txtName}
                   onChange={handleChange}
                 />
-              </div>
-              <div className="form-group">
-                <input
+              </Form.Group>
+              <Form.Group className="form-group">
+                <Form.Control
                   type="text"
                   name="txtEmail"
-                  className="form-control"
                   placeholder="Email *"
                   value={formData.txtEmail}
                   onChange={handleChange}
                 />
-              </div>
-              <div className="form-group">
-                <input
+              </Form.Group>
+              <Form.Group className="form-group">
+                <Form.Control
                   type="text"
                   name="txtPhone"
-                  className="form-control"
                   placeholder="Phone number *"
                   value={formData.txtPhone}
                   onChange={handleChange}
                 />
-              </div>
-              <div className="form-group">
-                <button type="submit" className="btnContact">
+              </Form.Group>
+              <Form.Group className="form-group">
+                <Button type="submit" className="btnContact">
                   Invia
-                </button>
-              </div>
-            </div>
-            <div className="col-md-6">
-              <div className="form-group">
-                <textarea
+                </Button>
+              </Form.Group>
+            </Col>
+            <Col md={6}>
+              <Form.Group className="form-group">
+                <Form.Control
+                  as="textarea"
                   name="txtMsg"
-                  className="form-control"
                   placeholder="Your message *"
                   style={{ width: "100%", height: "150px" }}
                   value={formData.txtMsg}
                   onChange={handleChange}
-                ></textarea>
-              </div>
-            </div>
-          </div>
-        </form>
-      </div>
+                />
+              </Form.Group>
+            </Col>
+          </Row>
+        </Form>
+      </Container>
     </>
   );
 }

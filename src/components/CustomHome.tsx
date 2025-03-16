@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import FlipperCard from "./FlipperCard";
 import { Article, spaceFlightStore } from "../store/spaceFlightStore";
 import gsap from "gsap";
+import { Container, Row, Col, Spinner } from "react-bootstrap";
 
 function CustomHome() {
   const { listNow, search, setArticleNow } = spaceFlightStore();
@@ -61,14 +62,11 @@ function CustomHome() {
   }, []);
 
   return (
-    <div className="container z-1" id="figliolino">
+    <Container className="z-1" id="figliolino">
       {listNow.length > 0 ? (
-        <div className="row" id="flipContainer">
+        <Row id="flipContainer">
           {listNow.slice(0, 8).map((item, i) => (
-            <div
-              key={i}
-              className={`col-lg-3 col-md-4 col-sm-6 col-12 mb-4 n${i}`}
-            >
+            <Col key={i} lg={3} md={4} sm={6} xs={12} className={`mb-4 n${i}`}>
               <FlipperCard
                 id={item?.id}
                 image_url={item?.image_url}
@@ -78,17 +76,17 @@ function CustomHome() {
                 published_at={item?.published_at}
                 news_site={item?.news_site}
               />
-            </div>
+            </Col>
           ))}
-        </div>
+        </Row>
       ) : (
         <div className="d-flex justify-content-center align-items-center">
-          <div className="spinner-border" role="status">
-            <span className="sr-only">Loading...</span>
-          </div>
+          <Spinner animation="border" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </Spinner>
         </div>
       )}
-    </div>
+    </Container>
   );
 }
 
