@@ -33,9 +33,9 @@ export default defineConfig({
         display: "standalone",
         icons: [
           {
-            src: "leoLogo.jpg",
+            src: "ZLogo.png",
             sizes: "1120x1120",
-            type: "image/jpg",
+            type: "image/png",
           },
         ],
       },
