@@ -34,7 +34,7 @@ function ContactPage() {
     const subject = "SpaceFlight News - Question message";
     const body = `Nome: ${formData.txtName}\nEmail: ${formData.txtEmail}\nTelefono: ${formData.txtPhone}\nMessaggio: ${formData.txtMsg}`;
 
-    window.location.href = `mailto:baronemanu109@gmail.com?subject=${encodeURIComponent(
+    window.location.href = `mailto:magezoltan17@gmail.com?subject=${encodeURIComponent(
       subject
     )}&body=${encodeURIComponent(body)}`;
   };
