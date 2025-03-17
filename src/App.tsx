@@ -9,6 +9,7 @@ import CustomSearch from "./components/CustomSearch";
 import styled from "styled-components";
 import cursor from "../src/assets/rocket-cursor.svg";
 import NotFoundPage from "./components/NotFoundPage";
+import BottomBar from "./components/BottomBar";
 
 const CustomCursorArea = styled.div`
   cursor: url(${cursor}) 16 16, auto !important;
@@ -34,6 +35,7 @@ function App() {
                 <Route path="/search" element={<CustomSearch />} />
                 <Route path="*" element={<NotFoundPage />} />
               </Routes>
+              <BottomBar></BottomBar>
             </div>
           </div>
         </CustomCursorArea>

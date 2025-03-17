@@ -49,7 +49,7 @@ function ContactPage() {
     <>
       <Container className="contact-form">
         <Form onSubmit={handleSubmit}>
-          <h3>Inviaci un messaggio</h3>
+          <h3>Send us a message</h3>
           <Row>
             <Col md={6}>
               <Form.Group className="form-group">
