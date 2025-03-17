@@ -5,16 +5,16 @@ function BottomBar() {
   return (
     <>
       <Nav
-        className="d-lg-none fixed-bottom bg-transparent"
+        className="d-lg-none fixed-bottom bg-transparent "
         style={{
           zIndex: 50,
           height: "3rem",
-          backgroundColor: "rgba(0,0,0,0.8)",
-          backdropFilter: "blur(5px)",
+          backgroundColor: "rgba(0,0,0,0.5)",
+          backdropFilter: "blur(30px)",
         }}
       >
         <Container className="h-100 mx-auto" style={{ maxWidth: "32rem" }}>
-          <Nav className="h-100 w-100 fw-medium" as="div">
+          <Nav className="h-100 w-100 fw-medium " as="div">
             <div
               className="d-grid h-100 w-100"
               style={{ gridTemplateColumns: "repeat(3, 1fr)" }}
@@ -28,8 +28,8 @@ function BottomBar() {
                   className="d-inline-flex flex-column align-items-center justify-content-center border-0 bg-transparent"
                 >
                   <i
-                    className="mb-1 fa fa-home text-light"
-                    style={{ fontSize: 30 }}
+                    className="fa fa-home text-light"
+                    style={{ fontSize: 25 }}
                   ></i>
                 </button>
               </Link>
@@ -43,7 +43,7 @@ function BottomBar() {
                 >
                   <i
                     className="fa fa-search text-light"
-                    style={{ fontSize: 30 }}
+                    style={{ fontSize: 25 }}
                   ></i>
                 </button>
               </Link>
@@ -57,7 +57,7 @@ function BottomBar() {
                 >
                   <i
                     className="fa fa-user text-light"
-                    style={{ fontSize: 30 }}
+                    style={{ fontSize: 25 }}
                   ></i>
                 </button>
               </Link>
