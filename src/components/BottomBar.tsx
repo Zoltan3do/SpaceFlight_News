@@ -14,7 +14,7 @@ function BottomBar() {
           marginTop: "20px",
         }}
       >
-        <Container className="h-100 mx-auto" style={{ maxWidth: "32rem" }}>
+        <Container className="h-100 mx-auto pb-5 pt-2" style={{ maxWidth: "32rem" }}>
           <Nav className="h-100 w-100 fw-medium " as="div">
             <div
               className="d-grid h-100 w-100"
