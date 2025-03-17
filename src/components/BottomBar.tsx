@@ -5,12 +5,13 @@ function BottomBar() {
   return (
     <>
       <Nav
-        className="d-lg-none fixed-bottom bg-transparent "
+        className="d-lg-none fixed-bottom bg-transparent"
         style={{
           zIndex: 50,
           height: "3rem",
           backgroundColor: "rgba(0,0,0,0.5)",
           backdropFilter: "blur(30px)",
+          marginTop: "20px",
         }}
       >
         <Container className="h-100 mx-auto" style={{ maxWidth: "32rem" }}>

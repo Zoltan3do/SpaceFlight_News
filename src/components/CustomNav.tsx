@@ -7,6 +7,7 @@ export const CustomNav = () => {
 
   const handleChangeState = (state: string) => {
     changeState(state);
+    window.scrollTo(0, 0);
   };
 
   useEffect(() => {}, [stateNow]);
