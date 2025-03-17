@@ -32,10 +32,18 @@ function CustomHome() {
       duration: dur,
       ease: "power1.out",
       stagger: 0.2,
-      onStart: () =>
-        (document.querySelector(nClass)!.style.pointerEvents = "none"),
-      onComplete: () =>
-        (document.querySelector(nClass)!.style.pointerEvents = "auto"),
+      onStart: function () {
+        const element = document.querySelector(nClass) as HTMLElement;
+        if (element) {
+          element.style.pointerEvents = "none";
+        }
+      },
+      onComplete: function () {
+        const element = document.querySelector(nClass) as HTMLElement;
+        if (element) {
+          element.style.pointerEvents = "auto";
+        }
+      },
     });
   };
 
