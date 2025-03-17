@@ -16,3 +16,8 @@ body {
     align-items: center;
   }
 }
+
+.titolone {
+  font-size: 3.5em !important;
+  font-family: "Bebas Neue", sans-serif;
+}

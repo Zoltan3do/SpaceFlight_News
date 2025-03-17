@@ -24,9 +24,12 @@ function App() {
         <CustomCursorArea>
           <div className="gradient-generated vh-100 d-flex justify-content-center align-items-center">
             <div
-              className="rounded rounded-5 border border-2 father-color px-5 py-4 z-1"
+              className="rounded rounded-5 border border-2 father-color px-3 py-4 z-1"
               id="figlioletto"
             >
+              <div className=" w-100 bg-transparent opacity d-flex justify-content-center align-items-center ">
+                <p className="text-center text-light titolone">SpaceFlight News</p>
+              </div>
               <CustomNav></CustomNav>
               <Routes>
                 <Route path="/" element={<CustomHome />} />
