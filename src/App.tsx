@@ -19,6 +19,8 @@ const CustomCursorArea = styled.div`
 `;
 
 function App() {
+  
+
   return (
     <>
       <BrowserRouter>
